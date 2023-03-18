@@ -1,0 +1,29 @@
+﻿@page
+@using Task3AND4;
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+    FigureController controller = new FigureController("D:\\");
+
+    Figure figure1 = new Figure("Rectangle", "m195.5,130l120.5,-1l0,51l-121,0l0.5,-50z", "#7AD6CA");
+    Figure figure2 = new Figure("Romb", "m435,125l-87,94l87,86l56,-98l-56,-82z", "#7AD6CA");
+
+    List<Figure> figures = new List<Figure> { figure1, figure2 };
+
+    controller.DisplayFile(figure1, "D:\\figure1.txt");
+    controller.DisplayConsole(figure1);
+
+
+    controller.SaveTxtFigures(figures);
+    controller.LoadTxtFigures();
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <svg>
+        <path d="@figure1.Path" fill="@figure1.Color"></path>
+    </svg>
+    <svg width="800" height="600">
+        <path d="@figure2.Path" fill="@figure2.Color"></path>
+    </svg>
+</div>
